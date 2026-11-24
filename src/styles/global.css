@@ -1,0 +1,375 @@
+/* ============================================================
+   Glow Clinic — global styles, design tokens & shared UI
+   Edit the tokens below to re-theme the whole website.
+   ============================================================ */
+
+/* ---------- Design tokens (light) ---------- */
+:root {
+  color-scheme: light;
+
+  /* Colors */
+  --bg: #fbfaf8;
+  --bg-alt: #f4f1ec;
+  --surface: #ffffff;
+  --surface-soft: #f8f6fb;
+  --text: #1b1626;
+  --text-soft: #3a3450;
+  --muted: #6e6780;
+  --border: rgba(27, 22, 38, 0.1);
+
+  --primary: #7a5af8;
+  --primary-strong: #6541f0;
+  --primary-rgb: 122, 90, 248;
+  --rose: #f2a6c2;
+  --success: #1fa971;
+  --danger: #e5484d;
+
+  /* Elevation */
+  --shadow-sm: 0 10px 30px -18px rgba(35, 22, 80, 0.35);
+  --shadow-md: 0 24px 50px -28px rgba(35, 22, 80, 0.4);
+  --shadow-lg: 0 40px 80px -40px rgba(35, 22, 80, 0.5);
+
+  /* Shape & type */
+  --radius-sm: 14px;
+  --radius: 20px;
+  --radius-lg: 28px;
+  --font-display: 'Fraunces', 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --navbar-h: 76px;
+
+  /* Per-state helpers */
+  --navbar-scrolled-bg: rgba(251, 250, 248, 0.85);
+  --footer-bg: #15111f;
+  --footer-muted: #a49dbb;
+  --footer-border: rgba(255, 255, 255, 0.09);
+}
+
+/* ---------- Design tokens (dark) ---------- */
+html[data-bs-theme='dark'] {
+  color-scheme: dark;
+
+  --bg: #100d18;
+  --bg-alt: #161223;
+  --surface: #1a1626;
+  --surface-soft: #221c31;
+  --text: #f3f0fa;
+  --text-soft: #e6e1f4;
+  --muted: #a8a1bd;
+  --border: rgba(255, 255, 255, 0.1);
+
+  --primary: #9b80ff;
+  --primary-strong: #8a6bff;
+  --primary-rgb: 155, 128, 255;
+  --rose: #f4b2cd;
+
+  --shadow-sm: 0 10px 30px -18px rgba(0, 0, 0, 0.7);
+  --shadow-md: 0 24px 50px -28px rgba(0, 0, 0, 0.75);
+  --shadow-lg: 0 40px 80px -40px rgba(0, 0, 0, 0.85);
+
+  --navbar-scrolled-bg: rgba(16, 13, 24, 0.85);
+  --footer-bg: #0a0812;
+}
+
+/* ---------- Base ---------- */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--navbar-h) + 10px);
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  background-color: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  transition: background-color 0.35s ease, color 0.35s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+p {
+  color: var(--muted);
+}
+
+a {
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+img {
+  max-width: 100%;
+}
+
+::selection {
+  background: rgba(var(--primary-rgb), 0.25);
+  color: var(--text);
+}
+
+:focus-visible {
+  outline: 3px solid rgba(var(--primary-rgb), 0.45);
+  outline-offset: 2px;
+}
+
+/* ---------- Layout helpers ---------- */
+.section {
+  position: relative;
+  padding: clamp(4.5rem, 9vw, 7rem) 0;
+}
+
+.section--alt {
+  background: var(--bg-alt);
+}
+
+.section-head {
+  max-width: 640px;
+  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.section-head--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 26px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+.section-title {
+  font-size: clamp(1.95rem, 4vw, 2.85rem);
+  line-height: 1.14;
+  margin-bottom: 1rem;
+}
+
+.section-sub {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+/* ---------- Brand logo ---------- */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-shrink: 0;
+}
+
+.logo__mark {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary), #b06ab3 60%, var(--rose));
+  box-shadow: 0 10px 22px -12px rgba(var(--primary-rgb), 0.9);
+}
+
+.logo__text {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: currentColor;
+}
+
+.logo__text span {
+  font-weight: 400;
+  opacity: 0.7;
+  margin-left: 0.3em;
+}
+
+/* ---------- Buttons ---------- */
+.btn-glow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.95rem 1.75rem;
+  border: 0;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 0.97rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #fff;
+  background: linear-gradient(120deg, var(--primary), #a56bf3 55%, var(--rose));
+  box-shadow: 0 14px 30px -12px rgba(var(--primary-rgb), 0.6);
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+
+.btn-glow:hover,
+.btn-glow:focus-visible {
+  color: #fff;
+  transform: translateY(-3px);
+  filter: saturate(1.1);
+  box-shadow: 0 22px 40px -14px rgba(var(--primary-rgb), 0.75);
+}
+
+.btn-glow:active {
+  transform: translateY(-1px);
+}
+
+.btn-glow--sm {
+  padding: 0.68rem 1.3rem;
+  font-size: 0.9rem;
+}
+
+.btn-glass {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.93rem 1.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.97rem;
+  transition: background 0.25s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-glass:hover,
+.btn-glass:focus-visible {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
+}
+
+.btn-soft {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.9rem 1.65rem;
+  border-radius: 999px;
+  border: 1.5px solid rgba(var(--primary-rgb), 0.45);
+  background: transparent;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.97rem;
+  transition: background 0.25s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-soft:hover,
+.btn-soft:focus-visible {
+  color: var(--primary);
+  background: rgba(var(--primary-rgb), 0.1);
+  transform: translateY(-3px);
+}
+
+/* ---------- Text helpers ---------- */
+.text-gradient {
+  background: linear-gradient(100deg, var(--primary), #b06ab3 55%, #d9779f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Bright variant used on dark imagery (hero) */
+.text-gradient--bright {
+  background: linear-gradient(100deg, #b8a4ff, #e9b8ff 45%, #ffc9d8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- Scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s ease var(--reveal-delay, 0ms),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Decorative blobs ---------- */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.blob--primary {
+  background: rgba(var(--primary-rgb), 0.28);
+}
+
+.blob--rose {
+  background: rgba(242, 166, 194, 0.35);
+}
+
+/* Keep section content above decorative blobs */
+.section > .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Accessibility ---------- */
+.sr-only-focusable:focus {
+  position: static !important;
+  width: auto;
+  height: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
